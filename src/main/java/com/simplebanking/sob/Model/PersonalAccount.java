@@ -7,6 +7,8 @@ import java.math.BigDecimal;
 import java.util.HashSet;
 import java.util.Set;
 
+@Entity
+@Table(name = "personal_account")
 public class PersonalAccount implements Accountable {
     @Id
     @GeneratedValue(strategy = GenerationType.AUTO)
