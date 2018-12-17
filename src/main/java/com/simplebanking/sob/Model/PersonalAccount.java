@@ -93,4 +93,13 @@ public class PersonalAccount implements Accountable {
         this.accountType = accountType;
     }
 
+    @Override
+    public void addFounds(BigDecimal value) {
+        this.balance = balance.add(value);
+    }
+
+    @Override
+    public void removeFounds(BigDecimal value) {
+        this.balance.subtract(value);
+    }
 }
