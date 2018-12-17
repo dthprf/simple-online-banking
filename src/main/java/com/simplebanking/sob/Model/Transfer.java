@@ -22,17 +22,27 @@ public class Transfer implements Operationable {
     @Enumerated(EnumType.STRING)
     private TransactionStatus transactionStatus;
 
-    protected Transfer() {}
+    @Enumerated(EnumType.STRING)
+    private TransferType transferType;
 
-    public Transfer(Accountable targetAccount, Accountable sourceAccount, BigDecimal value, TransactionStatus transactionStatus) {
+    protected Transfer() {
+    }
+
+    public Transfer(Accountable targetAccount, Accountable sourceAccount, BigDecimal value,
+                    TransactionStatus transactionStatus, TransferType transferType) {
         this.targetAccount = targetAccount;
         this.sourceAccount = sourceAccount;
         this.value = value;
         this.transactionStatus = transactionStatus;
+        this.transferType = transferType;
     }
 
     public Long getTransferId() {
         return transferId;
+    }
+
+    public void setTransferId(Long transferId) {
+        this.transferId = transferId;
     }
 
     public Accountable getTargetAccount() {
@@ -51,10 +61,6 @@ public class Transfer implements Operationable {
         this.sourceAccount = sourceAccount;
     }
 
-    public BigDecimal getValue() {
-        return value;
-    }
-
     public void setValue(BigDecimal value) {
         this.value = value;
     }
@@ -67,9 +73,15 @@ public class Transfer implements Operationable {
         this.transactionStatus = transactionStatus;
     }
 
-    @Override
-    public void proceedTransfer() {
-        //TODO
-        System.out.println("Not implemented yet");
+    public TransferType getTransferType() {
+        return transferType;
+    }
+
+    public void setTransferType(TransferType transferType) {
+        this.transferType = transferType;
+    }
+    
+    public BigDecimal getValue() {
+        return value;
     }
 }
