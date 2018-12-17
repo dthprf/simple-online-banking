@@ -21,7 +21,11 @@ public class PersonalAccountServiceImpl implements PersonalAccountService {
 
     @Override
     public PersonalAccount createPersonalAccount(Long customerId, PersonalAccount personalAccount) {
-
+        return customerRepositiory.findById(customerId)
+                .map(customer -> {
+                    personalAccount.setOwner(customer);
+                    return personalAccountRepository.save(personalAccount);
+                }).orElseThrow(() -> new NotFoundException("Customer does not exist (with ID: " + customerId));
     }
 
     @Override
