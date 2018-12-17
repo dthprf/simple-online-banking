@@ -46,4 +46,60 @@ public class Customer {
         this.contactNumbers = contactNumbers;
         this.accounts = accounts;
     }
+
+    public Long getCustomerId() {
+        return customerId;
+    }
+
+    public void setCustomerId(Long customerId) {
+        this.customerId = customerId;
+    }
+
+    public String getUserLogin() {
+        return userLogin;
+    }
+
+    public void setUserLogin(String userLogin) {
+        this.userLogin = userLogin;
+    }
+
+    public String getPassword() {
+        return password;
+    }
+
+    public void setPassword(String password) {
+        this.password = password;
+    }
+
+    public CustomerPersonalData getCustomerData() {
+        return customerData;
+    }
+
+    public void setCustomerData(CustomerPersonalData customerData) {
+        this.customerData = customerData;
+    }
+
+    public CustomerAddress getCustomerAddress() {
+        return customerAddress;
+    }
+
+    public void setCustomerAddress(CustomerAddress customerAddress) {
+        this.customerAddress = customerAddress;
+    }
+
+    public Set<MobilePhoneNumber> getContactNumbers() {
+        return contactNumbers;
+    }
+
+    public void setContactNumbers(Set<MobilePhoneNumber> contactNumbers) {
+        this.contactNumbers = contactNumbers;
+    }
+
+    public Set<Accountable> getAccounts() {
+        return accounts;
+    }
+
+    public void setAccounts(Set<Accountable> accounts) {
+        this.accounts = accounts;
+    }
 }
