@@ -28,6 +28,29 @@ public class TransferServiceImpl implements TransferService {
         return transferRepository.findTransactions(accountId);
     }
 
+    @Override
+    @Transactional
+    public TransferImpl saveTransfer(TransferImpl transferImpl, Long targetAccountId) {
+        PersonalAccount personalAccount = personalAccountRepository.getPersonalAccountByAccountId(targetAccountId);
+
+        if (personalAccount == null) {
+            throw new NotFoundException("Account does not exist (with ID: " + targetAccountId);
+        }
+
+        fillTransfer(transferImpl, personalAccount);
+
+        if (validateInternalTransfer(transferImpl)) {
+            proceedInternalTransfer(transferImpl);
+            personalAccount.addTransaction(transferImpl);
+            personalAccountRepository.save(personalAccount);
+
+        } else {
+            transferImpl.setTransactionStatus(TransactionStatus.CANCELED);
+            throw new TransferIncorrectException("TransferImpl incorrect : canceled.");
+        }
+
+        return transferRepository.save(transferImpl);
+    }
     private TransferImpl proceedInternalTransfer(TransferImpl transferImpl) {
         Accountable targetAccount = transferImpl.getTargetAccount();
         targetAccount.addFounds(transferImpl.getValue());
