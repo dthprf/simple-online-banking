@@ -29,4 +29,11 @@ public class TransferServiceImpl implements TransferService {
     }
 
 
+    private TransferImpl fillTransfer(TransferImpl transferImpl, PersonalAccount targetAccount, PersonalAccount sourceAccount) {
+        transferImpl.setTransferType(TransferType.BETWEENACCOUNTS);
+        addTargetAccount(transferImpl, targetAccount);
+        transferImpl.setSourceAccount(sourceAccount);
+
+        return transferImpl;
+    }
 }
