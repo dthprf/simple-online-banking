@@ -103,4 +103,9 @@ public class TransferServiceImpl implements TransferService {
 
         return isValueHigherThanZero(transferValue);
     }
+
+    private boolean isValueHigherThanZero(BigDecimal transferValue) {
+        return transferValue.compareTo(BigDecimal.ZERO) > 0;
+    }
+
 }
