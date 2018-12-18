@@ -96,4 +96,11 @@ public class TransferServiceImpl implements TransferService {
         return transferImpl;
     }
 
+    private boolean isTransferValueCorrect(BigDecimal transferValue) {
+        if (transferValue == null) {
+            return false;
+        }
+
+        return isValueHigherThanZero(transferValue);
+    }
 }
