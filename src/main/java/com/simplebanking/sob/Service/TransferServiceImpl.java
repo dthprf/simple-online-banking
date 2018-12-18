@@ -28,6 +28,13 @@ public class TransferServiceImpl implements TransferService {
         return transferRepository.findTransactions(accountId);
     }
 
+    private TransferImpl proceedInternalTransfer(TransferImpl transferImpl) {
+        Accountable targetAccount = transferImpl.getTargetAccount();
+        targetAccount.addFounds(transferImpl.getValue());
+        transferImpl.setTransactionStatus(TransactionStatus.COMPLETED);
+
+        return transferImpl;
+    }
     private boolean validateInternalTransfer(TransferImpl transferImpl) {
         BigDecimal transferValue = transferImpl.getValue();
 
