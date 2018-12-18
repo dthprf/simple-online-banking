@@ -20,3 +20,8 @@ public class TransferController {
         return transferService.saveTransfer(transferImpl, accountId);
     }
 
+    @PostMapping("accounts/{sourceAccountId}/transfers/{targetAccountId}")
+    public TransferImpl createExternalTransfer(@PathVariable Long sourceAccountId, @PathVariable Long targetAccountId,
+                                       @Valid @RequestBody TransferImpl transferImpl) {
+        return transferService.saveTransfer(transferImpl, sourceAccountId, targetAccountId);
+    }
