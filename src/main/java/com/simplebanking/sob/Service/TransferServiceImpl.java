@@ -72,6 +72,15 @@ public class TransferServiceImpl implements TransferService {
         return true;
     }
 
+
+    private TransferImpl fillTransfer(TransferImpl transferImpl, PersonalAccount targetAccount) {
+        transferImpl.setTransferType(TransferType.INTERNAL);
+        addTargetAccount(transferImpl, targetAccount);
+        transferImpl.setSourceAccount(targetAccount);
+
+        return transferImpl;
+    }
+
     private TransferImpl fillTransfer(TransferImpl transferImpl, PersonalAccount targetAccount, PersonalAccount sourceAccount) {
         transferImpl.setTransferType(TransferType.BETWEENACCOUNTS);
         addTargetAccount(transferImpl, targetAccount);
