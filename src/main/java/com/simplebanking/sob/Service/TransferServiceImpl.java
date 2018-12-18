@@ -28,6 +28,19 @@ public class TransferServiceImpl implements TransferService {
         return transferRepository.findTransactions(accountId);
     }
 
+    private boolean validateInternalTransfer(TransferImpl transferImpl) {
+        BigDecimal transferValue = transferImpl.getValue();
+
+        if (!isTransferValueCorrect(transferValue)) {
+            return false;
+        }
+
+        if (transferImpl.getTargetAccount() == null || transferImpl.getSourceAccount() == null) {
+            return false;
+        }
+
+        return true;
+    }
 
     private TransferImpl fillTransfer(TransferImpl transferImpl, PersonalAccount targetAccount, PersonalAccount sourceAccount) {
         transferImpl.setTransferType(TransferType.BETWEENACCOUNTS);
