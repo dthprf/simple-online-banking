@@ -58,6 +58,17 @@ public class TransferServiceImpl implements TransferService {
 
         return transferImpl;
     }
+
+    private TransferImpl proceedExternalTransfer(TransferImpl transferImpl) {
+        Accountable targetAccount = transferImpl.getTargetAccount();
+        Accountable sourceAccount = transferImpl.getSourceAccount();
+        sourceAccount.removeFounds(transferImpl.getValue());
+        targetAccount.addFounds(transferImpl.getValue());
+        transferImpl.setTransactionStatus(TransactionStatus.COMPLETED);
+
+        return transferImpl;
+    }
+
     private boolean validateInternalTransfer(TransferImpl transferImpl) {
         BigDecimal transferValue = transferImpl.getValue();
 
