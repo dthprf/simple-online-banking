@@ -61,10 +61,6 @@ public class TransferImpl implements Transfer {
         this.sourceAccount = sourceAccount;
     }
 
-    public void setValue(BigDecimal value) {
-        this.value = value;
-    }
-
     public TransactionStatus getTransactionStatus() {
         return transactionStatus;
     }
@@ -84,5 +80,9 @@ public class TransferImpl implements Transfer {
     @Override
     public BigDecimal getValue() {
         return value;
+    }
+
+    public void setValue(BigDecimal value) {
+        this.value = value;
     }
 }

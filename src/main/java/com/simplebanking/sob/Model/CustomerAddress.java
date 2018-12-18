@@ -14,7 +14,8 @@ public class CustomerAddress {
     private String houseNumber;
     private String country;
 
-    protected CustomerAddress() {}
+    protected CustomerAddress() {
+    }
 
     public CustomerAddress(String city, String postCode, String streetName, String houseNumber, String country) {
         this.city = city;

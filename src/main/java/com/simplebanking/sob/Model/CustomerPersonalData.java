@@ -17,7 +17,8 @@ public class CustomerPersonalData {
     private String email;
     private Date dateOfBirth;
 
-    protected CustomerPersonalData() {}
+    protected CustomerPersonalData() {
+    }
 
     public CustomerPersonalData(String firstName, String lastName, String email, Date dateOfBirth) {
         this.firstName = firstName;

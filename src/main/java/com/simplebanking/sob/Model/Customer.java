@@ -36,7 +36,8 @@ public class Customer {
     @JoinColumn(name = "customer_id")
     private Set<Accountable> accounts = new HashSet<>();
 
-    protected Customer() {}
+    protected Customer() {
+    }
 
     public Customer(String userLogin, String password, CustomerPersonalData customerData, CustomerAddress customerAddress, Set<MobilePhoneNumber> contactNumbers, Set<Accountable> accounts) {
         this.userLogin = userLogin;

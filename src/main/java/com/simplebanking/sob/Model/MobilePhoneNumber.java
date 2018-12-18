@@ -11,7 +11,8 @@ public class MobilePhoneNumber {
     private int areaCode;
     private int number;
 
-    protected MobilePhoneNumber() {}
+    protected MobilePhoneNumber() {
+    }
 
     public MobilePhoneNumber(int areaCode, int number) {
         this.areaCode = areaCode;

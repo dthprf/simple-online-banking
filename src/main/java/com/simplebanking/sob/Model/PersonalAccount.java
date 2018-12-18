@@ -50,14 +50,6 @@ public class PersonalAccount implements Accountable {
         this.accountId = accountId;
     }
 
-    public void setAccountNumber(String accountNumber) {
-        this.accountNumber = accountNumber;
-    }
-
-    public void setBalance(BigDecimal balance) {
-        this.balance = balance;
-    }
-
     public Customer getOwner() {
         return owner;
     }
@@ -86,6 +78,10 @@ public class PersonalAccount implements Accountable {
         return accountNumber;
     }
 
+    public void setAccountNumber(String accountNumber) {
+        this.accountNumber = accountNumber;
+    }
+
     @Override
     public void addFounds(BigDecimal value) {
         this.balance = balance.add(value);
@@ -99,6 +95,10 @@ public class PersonalAccount implements Accountable {
     @Override
     public BigDecimal getBalance() {
         return balance;
+    }
+
+    public void setBalance(BigDecimal balance) {
+        this.balance = balance;
     }
 
     @Override
