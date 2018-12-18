@@ -51,6 +51,36 @@ public class TransferServiceImpl implements TransferService {
 
         return transferRepository.save(transferImpl);
     }
+
+    @Override
+    @Transactional
+    public TransferImpl saveTransfer(TransferImpl transferImpl, Long sourceAccountId, Long targetAccountId) {
+        PersonalAccount sourceAccount = personalAccountRepository.getPersonalAccountByAccountId(sourceAccountId);
+        PersonalAccount targetAccount = personalAccountRepository.getPersonalAccountByAccountId(targetAccountId);
+
+        if (sourceAccount == null) {
+            throw new NotFoundException("Source account does not exist (with ID: " + sourceAccountId);
+        } else if (targetAccount == null) {
+            throw new NotFoundException("Source account does not exist (with ID: " + targetAccountId);
+        }
+
+        fillTransfer(transferImpl, targetAccount, sourceAccount);
+
+        if (validateExternalTransfer(transferImpl)) {
+            proceedExternalTransfer(transferImpl);
+            sourceAccount.addTransaction(transferImpl);
+            targetAccount.addTransaction(transferImpl);
+            personalAccountRepository.save(sourceAccount);
+            personalAccountRepository.save(targetAccount);
+
+        } else {
+            transferImpl.setTransactionStatus(TransactionStatus.CANCELED);
+            throw new TransferIncorrectException("TransferImpl incorrect : canceled.");
+        }
+
+        return transferRepository.save(transferImpl);
+    }
+
     private TransferImpl proceedInternalTransfer(TransferImpl transferImpl) {
         Accountable targetAccount = transferImpl.getTargetAccount();
         targetAccount.addFounds(transferImpl.getValue());
