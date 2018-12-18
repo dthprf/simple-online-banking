@@ -25,3 +25,9 @@ public class TransferController {
                                        @Valid @RequestBody TransferImpl transferImpl) {
         return transferService.saveTransfer(transferImpl, sourceAccountId, targetAccountId);
     }
+
+    @GetMapping("accounts/{accountId}/transfers")
+    public List<TransferImpl> getTransactions(@PathVariable Long accountId) {
+        return transferService.getTransactions(accountId);
+    }
+}
