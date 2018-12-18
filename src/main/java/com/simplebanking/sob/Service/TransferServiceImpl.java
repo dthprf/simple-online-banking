@@ -72,6 +72,19 @@ public class TransferServiceImpl implements TransferService {
         return true;
     }
 
+    private boolean validateExternalTransfer(TransferImpl transferImpl) {
+        BigDecimal transferValue = transferImpl.getValue();
+
+        if (!isTransferValueCorrect(transferValue)) {
+            return false;
+        }
+
+        if (transferImpl.getSourceAccount() == null || transferImpl.getTargetAccount() == null) {
+            return false;
+        }
+
+        return isBalanceEnough(transferImpl.getSourceAccount(), transferValue);
+    }
 
     private TransferImpl fillTransfer(TransferImpl transferImpl, PersonalAccount targetAccount) {
         transferImpl.setTransferType(TransferType.INTERNAL);
