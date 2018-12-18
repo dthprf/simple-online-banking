@@ -1,0 +1,26 @@
+package com.simplebanking.sob.Service;
+
+import com.simplebanking.sob.Exception.NotFoundException;
+import com.simplebanking.sob.Exception.TransferIncorrectException;
+import com.simplebanking.sob.Model.*;
+import com.simplebanking.sob.Repository.PersonalAccountRepository;
+import com.simplebanking.sob.Repository.TransferRepository;
+import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.stereotype.Service;
+
+import javax.transaction.Transactional;
+import java.math.BigDecimal;
+import java.util.List;
+
+@Service
+@Transactional
+public class TransferServiceImpl implements TransferService {
+
+    @Autowired
+    TransferRepository transferRepository;
+
+    @Autowired
+    PersonalAccountRepository personalAccountRepository;
+
+
+}
