@@ -88,4 +88,12 @@ public class TransferServiceImpl implements TransferService {
 
         return transferImpl;
     }
+
+    private TransferImpl addTargetAccount(TransferImpl transferImpl, PersonalAccount targetAccount) {
+        transferImpl.setTransactionStatus(TransactionStatus.PENDING);
+        transferImpl.setTargetAccount(targetAccount);
+
+        return transferImpl;
+    }
+
 }
