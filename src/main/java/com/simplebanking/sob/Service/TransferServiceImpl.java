@@ -108,4 +108,10 @@ public class TransferServiceImpl implements TransferService {
         return transferValue.compareTo(BigDecimal.ZERO) > 0;
     }
 
+    private boolean isBalanceEnough(Accountable sourceAccount, BigDecimal value) {
+        if ((value.compareTo(sourceAccount.getBalance())) > 0) {
+            return false;
+        }
+        return true;
+    }
 }
