@@ -23,4 +23,10 @@ public class TransferServiceImpl implements TransferService {
     PersonalAccountRepository personalAccountRepository;
 
 
+    @Override
+    public List<TransferImpl> getTransactions(Long accountId) {
+        return transferRepository.findTransactions(accountId);
+    }
+
+
 }
