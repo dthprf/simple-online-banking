@@ -5,7 +5,7 @@ import java.math.BigDecimal;
 
 @Entity
 @Table(name = "transfer")
-public class TransferImpl implements Operationable {
+public class TransferImpl implements Transfer {
     @Id
     @GeneratedValue(strategy = GenerationType.AUTO)
     private Long transferId;

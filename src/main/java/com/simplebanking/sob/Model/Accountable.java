@@ -6,7 +6,7 @@ public interface Accountable {
     
     BigDecimal getBalance();
 
-    void addTransaction(Operationable transfer);
+    void addTransaction(Transfer transfer);
 
     void addFounds(BigDecimal value);
 
