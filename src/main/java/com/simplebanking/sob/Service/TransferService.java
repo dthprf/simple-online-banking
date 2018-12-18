@@ -1,15 +1,15 @@
 package com.simplebanking.sob.Service;
 
-import com.simplebanking.sob.Model.Transfer;
+import com.simplebanking.sob.Model.TransferImpl;
 
 import java.util.List;
 
 public interface TransferService {
 
-    List<Transfer> getTransactions(Long accountId);
+    List<TransferImpl> getTransactions(Long accountId);
 
-    Transfer saveTransfer(Transfer transfer, Long targetAccountId);
+    TransferImpl saveTransfer(TransferImpl transferImpl, Long targetAccountId);
 
-    Transfer saveTransfer(Transfer transfer, Long sourceAccountId, Long targetAccountId);
+    TransferImpl saveTransfer(TransferImpl transferImpl, Long sourceAccountId, Long targetAccountId);
 
 }

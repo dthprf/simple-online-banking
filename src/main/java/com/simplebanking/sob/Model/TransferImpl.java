@@ -5,7 +5,7 @@ import java.math.BigDecimal;
 
 @Entity
 @Table(name = "transfer")
-public class Transfer implements Operationable {
+public class TransferImpl implements Operationable {
     @Id
     @GeneratedValue(strategy = GenerationType.AUTO)
     private Long transferId;
@@ -25,11 +25,11 @@ public class Transfer implements Operationable {
     @Enumerated(EnumType.STRING)
     private TransferType transferType;
 
-    protected Transfer() {
+    protected TransferImpl() {
     }
 
-    public Transfer(Accountable targetAccount, Accountable sourceAccount, BigDecimal value,
-                    TransactionStatus transactionStatus, TransferType transferType) {
+    public TransferImpl(Accountable targetAccount, Accountable sourceAccount, BigDecimal value,
+                        TransactionStatus transactionStatus, TransferType transferType) {
         this.targetAccount = targetAccount;
         this.sourceAccount = sourceAccount;
         this.value = value;
@@ -80,7 +80,8 @@ public class Transfer implements Operationable {
     public void setTransferType(TransferType transferType) {
         this.transferType = transferType;
     }
-    
+
+    @Override
     public BigDecimal getValue() {
         return value;
     }
