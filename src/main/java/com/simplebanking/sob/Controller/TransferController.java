@@ -29,5 +29,14 @@ public class TransferController {
     @GetMapping("accounts/{accountId}/transfers")
     public List<TransferImpl> getTransactions(@PathVariable Long accountId) {
         return transferService.getTransactions(accountId);
+    private MappingJacksonValue serializeFullTransfer(Transfer transfer) {
+        MappingJacksonValue mappingJacksonValue = new MappingJacksonValue(transfer);
+
+        FilterProvider filters = new SimpleFilterProvider()
+                .addFilter("transferFilter", SimpleBeanPropertyFilter.serializeAll());
+
+        mappingJacksonValue.setFilters(filters);
+
+        return mappingJacksonValue;
     }
 }
