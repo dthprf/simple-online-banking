@@ -7,4 +7,6 @@ import java.util.Queue;
 public interface MessageConsumer {
     void processMessage(SOBMessage message);
     void setQueue(Queue<SOBMessage> queue);
+    void enqueueMessage(SOBMessage message);
+    String getRouteName();
 }
