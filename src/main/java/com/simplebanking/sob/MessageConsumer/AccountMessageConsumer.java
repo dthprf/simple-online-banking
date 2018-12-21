@@ -23,3 +23,17 @@ public class AccountMessageConsumer implements Runnable, MessageConsumer {
     public AccountMessageConsumer() {
         new Thread(this).start();
     }
+
+    @Override
+    public void processMessage(SOBMessage message) {
+        String method = message.getMethod();
+
+        switch (method) {
+            case "POST":
+                PersonalAccount createdAccount = (PersonalAccount) message.getRequestBody();
+                Long customerId = message.getPathParams().get("customerId");
+                DeferredResult<PersonalAccount> result = (DeferredResult<PersonalAccount>) message.getDeferredResult();
+                result.setResult(accountService.createPersonalAccount(customerId, createdAccount));
+                break;
+        }
+    }
