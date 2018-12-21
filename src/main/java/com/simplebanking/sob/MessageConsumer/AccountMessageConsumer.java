@@ -47,3 +47,9 @@ public class AccountMessageConsumer implements Runnable, MessageConsumer {
             //TODO real exception handling
         }
     }
+
+    @Override
+    public String getRouteKey() {
+        return routeKey;
+    }
+
