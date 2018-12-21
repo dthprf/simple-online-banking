@@ -28,6 +28,16 @@ public class CustomerMessageConsumer implements Runnable, MessageConsumer {
         }
     }
 
+    @Override
+    public void processMessage(SOBMessage message) {
+        String method = message.getMethod();
+
+        switch (method) {
+            case "POST":
+                Customer createdCustomer = customerService.createCustomer((Customer) message.getRequestBody());
+                DeferredResult<Customer> result = (DeferredResult<Customer>) message.getDeferredResult();
+                result.setResult(createdCustomer);
+                break;
         }
     }
 }
