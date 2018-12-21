@@ -7,9 +7,9 @@ public class SOBMessage {
     private Object requestBody;
     private String method;
     private String route;
-    private HashMap<String, String> pathParams;
+    private HashMap<String, Long> pathParams;
 
-    public SOBMessage(Object deferredResult, Object requestBody, String method, String route, HashMap<String, String> pathParams) {
+    public SOBMessage(Object deferredResult, Object requestBody, String method, String route, HashMap<String, Long> pathParams) {
         this.deferredResult = deferredResult;
         this.requestBody = requestBody;
         this.method = method;
@@ -49,11 +49,11 @@ public class SOBMessage {
         this.route = route;
     }
 
-    public HashMap<String, String> getPathParams() {
+    public HashMap<String, Long> getPathParams() {
         return pathParams;
     }
 
-    public void setPathParams(HashMap<String, String> pathParams) {
+    public void setPathParams(HashMap<String, Long> pathParams) {
         this.pathParams = pathParams;
     }
 }
