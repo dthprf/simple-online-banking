@@ -3,14 +3,17 @@ package com.simplebanking.sob.MessageConsumer;
 import com.simplebanking.sob.Model.SOBMessage;
 import com.simplebanking.sob.Service.CustomerService;
 import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.stereotype.Service;
+import org.springframework.stereotype.Component;
+import org.springframework.web.context.request.async.DeferredResult;
 
 import java.util.Queue;
 import java.util.concurrent.ConcurrentLinkedQueue;
+import java.util.concurrent.LinkedBlockingQueue;
 
-@Service
-public class CustomerMessageConsumer implements Runnable {
-    private Queue<SOBMessage> queue = new ConcurrentLinkedQueue<>();
+@Component
+public class CustomerMessageConsumer implements Runnable, MessageConsumer {
+
+    private Queue<SOBMessage> queue = new LinkedBlockingQueue<>();
 
     @Autowired
     private CustomerService customerService;
@@ -19,8 +22,11 @@ public class CustomerMessageConsumer implements Runnable {
     public void run() {
         SOBMessage message;
 
-        while (!Thread.currentThread().isInterrupted()) {
+        while (!Thread.currentThread().isInterrupted() && !queue.isEmpty()) {
             message = queue.poll();
+            processMessage(message);
+        }
+    }
 
         }
     }
