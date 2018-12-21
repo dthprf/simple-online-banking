@@ -1,5 +1,6 @@
 package com.simplebanking.sob.MessageConsumer;
 
+import com.simplebanking.sob.Model.Customer;
 import com.simplebanking.sob.Model.SOBMessage;
 import com.simplebanking.sob.Service.CustomerService;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -39,5 +40,20 @@ public class CustomerMessageConsumer implements Runnable, MessageConsumer {
                 result.setResult(createdCustomer);
                 break;
         }
+    }
+
+    @Override
+    public void setQueue(Queue<SOBMessage> queue) {
+        this.queue = queue;
+    }
+
+    @Override
+    public void enqueueMessage(SOBMessage message) {
+        queue.add(message);
+    }
+
+    @Override
+    public String getRouteName() {
+        return "customers";
     }
 }
