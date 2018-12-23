@@ -15,10 +15,8 @@ import java.util.concurrent.LinkedBlockingQueue;
 @Component
 public class AccountMessageConsumer implements Runnable, MessageConsumer {
 
-    private final BlockingQueue<SOBMessage> queue = new LinkedBlockingQueue<>();
-
     private static final RouteKey ROUTE_KEY = RouteKey.ACCOUNTS;
-
+    private final BlockingQueue<SOBMessage> queue = new LinkedBlockingQueue<>();
     @Autowired
     private PersonalAccountService accountService;
 

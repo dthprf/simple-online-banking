@@ -6,7 +6,6 @@ import com.simplebanking.sob.Model.SOBMessage;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.context.annotation.Scope;
 import org.springframework.stereotype.Component;
-import org.springframework.stereotype.Service;
 
 import java.util.Map;
 import java.util.Set;
@@ -20,14 +19,14 @@ public class Exchange {
 
     private Map<RouteKey, MessageConsumer> routeMap = new ConcurrentHashMap<>();
 
+    public Map<RouteKey, MessageConsumer> getRouteMap() {
+        return routeMap;
+    }
+
     @Autowired
     public void setRouteMap(Set<MessageConsumer> consumers) {
         this.routeMap = consumers.stream()
                 .collect(Collectors.toMap(MessageConsumer::getRouteKey, Function.identity()));
-    }
-
-    public Map<RouteKey, MessageConsumer> getRouteMap() {
-        return routeMap;
     }
 
     public void routeMessage(SOBMessage message) {

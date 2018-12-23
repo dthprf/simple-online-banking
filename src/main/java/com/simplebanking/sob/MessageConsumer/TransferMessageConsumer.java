@@ -5,8 +5,9 @@ import com.fasterxml.jackson.databind.ser.impl.SimpleBeanPropertyFilter;
 import com.fasterxml.jackson.databind.ser.impl.SimpleFilterProvider;
 import com.simplebanking.sob.Constants.MethodType;
 import com.simplebanking.sob.Constants.RouteKey;
-import com.simplebanking.sob.Constants.TransferType;
-import com.simplebanking.sob.Model.*;
+import com.simplebanking.sob.Model.SOBMessage;
+import com.simplebanking.sob.Model.Transfer;
+import com.simplebanking.sob.Model.TransferImpl;
 import com.simplebanking.sob.Service.TransferService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.converter.json.MappingJacksonValue;
@@ -26,11 +27,9 @@ public class TransferMessageConsumer implements Runnable, MessageConsumer {
     private static final String CUSTOMER_ACCOUNT = "sourceAccountId";
     private static final RouteKey ROUTE_KEY = RouteKey.TRANSFERS;
     private static final String FIELD_FILTER = "fieldFilter";
-
+    private final BlockingQueue<SOBMessage> queue = new LinkedBlockingQueue<>();
     @Autowired
     TransferService transferService;
-
-    private final BlockingQueue<SOBMessage> queue = new LinkedBlockingQueue<>();
 
     public TransferMessageConsumer() {
         startConsumer();

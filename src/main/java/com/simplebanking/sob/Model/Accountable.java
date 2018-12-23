@@ -3,7 +3,7 @@ package com.simplebanking.sob.Model;
 import java.math.BigDecimal;
 
 public interface Accountable {
-    
+
     BigDecimal getBalance();
 
     void addTransaction(Transfer transfer);

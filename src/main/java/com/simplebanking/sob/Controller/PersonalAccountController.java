@@ -30,7 +30,7 @@ public class PersonalAccountController {
 
     @PostMapping("/customers/{customerId}/accounts")
     public DeferredResult<PersonalAccount> createAccount(@PathVariable Long customerId,
-                                        @Valid @RequestBody PersonalAccount personalAccount) {
+                                                         @Valid @RequestBody PersonalAccount personalAccount) {
 
         DeferredResult<PersonalAccount> result = new DeferredResult<>();
         HashMap<String, Long> params = new HashMap<>();

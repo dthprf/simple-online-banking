@@ -6,7 +6,6 @@ import com.simplebanking.sob.Exchange.Exchange;
 import com.simplebanking.sob.Factory.MessageFactory;
 import com.simplebanking.sob.Model.Customer;
 import com.simplebanking.sob.Model.SOBMessage;
-import com.simplebanking.sob.Service.CustomerService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestBody;
