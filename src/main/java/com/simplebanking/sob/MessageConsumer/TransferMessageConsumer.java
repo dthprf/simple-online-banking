@@ -117,3 +117,20 @@ public class TransferMessageConsumer implements Runnable, MessageConsumer {
         }
     }
 
+    private void processGetTransfer(SOBMessage message) {
+        Long accountId = message.getPathParams().get(CUSTOMER_ACCOUNT);
+        DeferredResult<MappingJacksonValue> response = (DeferredResult<MappingJacksonValue>)
+                message.getDeferredResult();
+
+        List<TransferImpl> transfers = transferService.getTransactions(accountId);
+        Set<String> fieldsFilter = message.getFilterParams();
+
+        MappingJacksonValue mappingJacksonValue = new MappingJacksonValue(transfers);
+
+        FilterProvider filters = new SimpleFilterProvider()
+                .addFilter("transferFilter", SimpleBeanPropertyFilter.filterOutAllExcept(fieldsFilter));
+
+        mappingJacksonValue.setFilters(filters);
+        response.setResult(mappingJacksonValue);
+    }
+
