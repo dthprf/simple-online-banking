@@ -45,3 +45,8 @@ public class TransferMessageConsumer implements Runnable, MessageConsumer {
         }
     }
 
+    @Override
+    public RouteKey getRouteKey() {
+        return this.ROUTE_KEY;
+    }
+
