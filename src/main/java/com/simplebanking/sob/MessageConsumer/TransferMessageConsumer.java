@@ -36,3 +36,12 @@ public class TransferMessageConsumer implements Runnable, MessageConsumer {
         startConsumer();
     }
 
+    @Override
+    public void enqueueMessage(SOBMessage message) {
+        try {
+            this.queue.put(message);
+        } catch (InterruptedException e) {
+            e.printStackTrace();
+        }
+    }
+
