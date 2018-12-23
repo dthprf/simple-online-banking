@@ -1,5 +1,7 @@
 package com.simplebanking.sob.MessageConsumer;
 
+import com.simplebanking.sob.Constants.MethodType;
+import com.simplebanking.sob.Constants.RouteKey;
 import com.simplebanking.sob.Model.PersonalAccount;
 import com.simplebanking.sob.Model.SOBMessage;
 import com.simplebanking.sob.Service.PersonalAccountService;
@@ -15,26 +17,32 @@ public class AccountMessageConsumer implements Runnable, MessageConsumer {
 
     private final BlockingQueue<SOBMessage> queue = new LinkedBlockingQueue<>();
 
-    private String routeKey = "personalAccount";
+    private static final RouteKey ROUTE_KEY = RouteKey.ACCOUNTS;
 
     @Autowired
     private PersonalAccountService accountService;
 
     public AccountMessageConsumer() {
+        startConsumer();
+    }
+
+    public void startConsumer() {
         new Thread(this).start();
     }
 
     @Override
     public void processMessage(SOBMessage message) {
-        String method = message.getMethod();
+        MethodType method = message.getMethod();
 
         switch (method) {
-            case "POST":
+            case POST:
                 PersonalAccount createdAccount = (PersonalAccount) message.getRequestBody();
                 Long customerId = message.getPathParams().get("customerId");
                 DeferredResult<PersonalAccount> result = (DeferredResult<PersonalAccount>) message.getDeferredResult();
                 result.setResult(accountService.createPersonalAccount(customerId, createdAccount));
                 break;
+
+            //TODO Default exception
         }
     }
 
@@ -49,8 +57,8 @@ public class AccountMessageConsumer implements Runnable, MessageConsumer {
     }
 
     @Override
-    public String getRouteKey() {
-        return routeKey;
+    public RouteKey getRouteKey() {
+        return ROUTE_KEY;
     }
 
     @Override
