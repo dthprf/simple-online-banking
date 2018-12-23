@@ -134,3 +134,14 @@ public class TransferMessageConsumer implements Runnable, MessageConsumer {
         response.setResult(mappingJacksonValue);
     }
 
+    private MappingJacksonValue serializeFullTransfer(Transfer transfer) {
+        MappingJacksonValue mappingJacksonValue = new MappingJacksonValue(transfer);
+
+        FilterProvider filters = new SimpleFilterProvider()
+                .addFilter("transferFilter", SimpleBeanPropertyFilter.serializeAll());
+
+        mappingJacksonValue.setFilters(filters);
+
+        return mappingJacksonValue;
+    }
+}
