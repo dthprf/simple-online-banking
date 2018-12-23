@@ -1,12 +1,15 @@
 package com.simplebanking.sob.Model;
 
+import com.simplebanking.sob.Constants.MethodType;
+import com.simplebanking.sob.Constants.RouteKey;
+
 import java.util.HashMap;
 
 public class SOBMessage {
     private Object deferredResult;
     private Object requestBody;
-    private String method;
-    private String route;
+    private MethodType method;
+    private RouteKey route;
     private HashMap<String, Long> pathParams;
 
     public SOBMessage(Object deferredResult, Object requestBody, String method, String route, HashMap<String, Long> pathParams) {
@@ -33,19 +36,19 @@ public class SOBMessage {
         this.requestBody = requestBody;
     }
 
-    public String getMethod() {
+    public MethodType getMethod() {
         return method;
     }
 
-    public void setMethod(String method) {
+    public void setMethod(MethodType method) {
         this.method = method;
     }
 
-    public String getRoute() {
+    public RouteKey getRoute() {
         return route;
     }
 
-    public void setRoute(String route) {
+    public void setRoute(RouteKey route) {
         this.route = route;
     }
 
