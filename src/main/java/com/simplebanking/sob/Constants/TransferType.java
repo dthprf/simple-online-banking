@@ -1,4 +1,4 @@
-package com.simplebanking.sob.Model;
+package com.simplebanking.sob.Constants;
 
 public enum TransferType {
     BETWEENACCOUNTS, INTERNAL
