@@ -91,3 +91,29 @@ public class TransferMessageConsumer implements Runnable, MessageConsumer {
         }
     }
 
+    private void processPostTransfer(SOBMessage message) {
+        Map<String, Long> params = message.getPathParams();
+        DeferredResult<MappingJacksonValue> response = (DeferredResult<MappingJacksonValue>) message.getDeferredResult();
+        TransferImpl postedTransfer = (TransferImpl) message.getRequestBody();
+        TransferImpl result;
+
+//        TransferType transferType = postedTransfer.getTransferType();
+
+        switch (params.size()) {
+            case 1:
+                result = transferService.saveTransfer(postedTransfer, params.get(CUSTOMER_ACCOUNT));
+                response.setResult(serializeFullTransfer(result));
+                break;
+
+            case 2:
+                result = transferService.saveTransfer(postedTransfer, params.get(CUSTOMER_ACCOUNT),
+                        params.get(TARGET_ACCOUNT_ID));
+                response.setResult(serializeFullTransfer(result));
+                break;
+
+            default:
+                System.out.println("ERROR: WRONG TRANSFER TYPE");
+                //todo : return error result
+        }
+    }
+
