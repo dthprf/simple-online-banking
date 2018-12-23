@@ -6,4 +6,5 @@ public interface MessageConsumer {
     void processMessage(SOBMessage message);
     void enqueueMessage(SOBMessage message);
     String getRouteKey();
+    void startConsumer();
 }
