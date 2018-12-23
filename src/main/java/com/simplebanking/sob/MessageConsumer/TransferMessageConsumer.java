@@ -55,3 +55,19 @@ public class TransferMessageConsumer implements Runnable, MessageConsumer {
         new Thread(this).start();
     }
 
+    @Override
+    public void run() {
+        SOBMessage message;
+
+        while (!Thread.currentThread().isInterrupted()) {
+            if (!queue.isEmpty()) {
+                try {
+                    message = queue.take();
+                    processMessage(message);
+
+                } catch (InterruptedException e) {
+                    e.printStackTrace();
+                }
+            }
+        }
+    }
