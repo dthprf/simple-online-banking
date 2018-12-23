@@ -15,5 +15,8 @@ public class MessageFactory {
     public SOBMessage createMessage(String method, String route, Object requestBody,
                                     Object deferredResult, HashMap<String, Long> params) {
         return new SOBMessage(deferredResult, requestBody, method, route, params);
+    public SOBMessage createMessage(MethodType method, RouteKey route, Object requestBody,
+                                    Object deferredResult, HashMap<String, Long> params, Set<String> filterParams) {
+        return new SOBMessage(deferredResult, requestBody, method, route, params, filterParams);
     }
 }
