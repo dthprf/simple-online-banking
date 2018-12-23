@@ -31,3 +31,8 @@ public class TransferMessageConsumer implements Runnable, MessageConsumer {
     TransferService transferService;
 
     private final BlockingQueue<SOBMessage> queue = new LinkedBlockingQueue<>();
+
+    public TransferMessageConsumer() {
+        startConsumer();
+    }
+
