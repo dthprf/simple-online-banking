@@ -27,20 +27,6 @@ public class CustomerMessageConsumer implements Runnable, MessageConsumer {
     }
 
     @Override
-    public void run() {
-        SOBMessage message;
-
-        while (!Thread.currentThread().isInterrupted()) {
-            if (!queue.isEmpty()) {
-                try {
-                    message = queue.take();
-                    processMessage(message);
-
-                } catch (InterruptedException e) {
-                    e.printStackTrace();
-                }
-            }
-        }
     public void startConsumer() {
         new Thread(this).start();
     }
@@ -55,6 +41,7 @@ public class CustomerMessageConsumer implements Runnable, MessageConsumer {
                 DeferredResult<Customer> result = (DeferredResult<Customer>) message.getDeferredResult();
                 result.setResult(createdCustomer);
                 break;
+                //TODO : ERROR HANDLING
         }
     }
 
@@ -72,5 +59,20 @@ public class CustomerMessageConsumer implements Runnable, MessageConsumer {
     public RouteKey getRouteKey() {
         return ROUTE_KEY;
     }
+
+    public void run() {
+        SOBMessage message;
+
+        while (!Thread.currentThread().isInterrupted()) {
+            if (!queue.isEmpty()) {
+                try {
+                    message = queue.take();
+                    processMessage(message);
+
+                } catch (InterruptedException e) {
+                    e.printStackTrace();
+                }
+            }
+        }
     }
 }
