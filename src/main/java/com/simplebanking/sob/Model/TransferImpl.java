@@ -2,6 +2,8 @@ package com.simplebanking.sob.Model;
 
 import com.fasterxml.jackson.annotation.JsonFilter;
 import com.fasterxml.jackson.annotation.JsonProperty;
+import com.simplebanking.sob.Constants.TransactionStatus;
+import com.simplebanking.sob.Constants.TransferType;
 
 import javax.persistence.*;
 import java.io.Serializable;

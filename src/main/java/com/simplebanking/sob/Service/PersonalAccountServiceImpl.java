@@ -5,6 +5,7 @@ import com.simplebanking.sob.Model.PersonalAccount;
 import com.simplebanking.sob.Repository.CustomerRepositiory;
 import com.simplebanking.sob.Repository.PersonalAccountRepository;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.scheduling.annotation.Async;
 import org.springframework.stereotype.Service;
 
 import javax.transaction.Transactional;

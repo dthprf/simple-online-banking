@@ -1,5 +1,7 @@
 package com.simplebanking.sob.Service;
 
+import com.simplebanking.sob.Constants.TransactionStatus;
+import com.simplebanking.sob.Constants.TransferType;
 import com.simplebanking.sob.Exception.NotFoundException;
 import com.simplebanking.sob.Exception.TransferIncorrectException;
 import com.simplebanking.sob.Model.*;
@@ -21,7 +23,6 @@ public class TransferServiceImpl implements TransferService {
 
     @Autowired
     PersonalAccountRepository personalAccountRepository;
-
 
     @Override
     public List<TransferImpl> getTransactions(Long accountId) {

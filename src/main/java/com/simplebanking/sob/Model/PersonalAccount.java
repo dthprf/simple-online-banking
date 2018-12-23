@@ -1,6 +1,7 @@
 package com.simplebanking.sob.Model;
 
 import com.fasterxml.jackson.annotation.JsonIgnore;
+import com.simplebanking.sob.Constants.AccountType;
 
 import javax.persistence.*;
 import java.math.BigDecimal;
