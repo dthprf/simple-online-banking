@@ -71,3 +71,23 @@ public class TransferMessageConsumer implements Runnable, MessageConsumer {
             }
         }
     }
+
+    @Override
+    public void processMessage(SOBMessage message) {
+        MethodType method = message.getMethod();
+
+        switch (method) {
+            case POST:
+                processPostTransfer(message);
+                break;
+
+            case GET:
+                processGetTransfer(message);
+                break;
+
+            default:
+                System.out.println("WRONG METHOD");
+                //todo : return error
+        }
+    }
+
