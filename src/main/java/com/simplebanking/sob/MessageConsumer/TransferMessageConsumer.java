@@ -50,3 +50,8 @@ public class TransferMessageConsumer implements Runnable, MessageConsumer {
         return this.ROUTE_KEY;
     }
 
+    @Override
+    public void startConsumer() {
+        new Thread(this).start();
+    }
+
