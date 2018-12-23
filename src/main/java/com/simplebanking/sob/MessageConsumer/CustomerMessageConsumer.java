@@ -23,7 +23,7 @@ public class CustomerMessageConsumer implements Runnable, MessageConsumer {
     private CustomerService customerService;
 
     public CustomerMessageConsumer() {
-        new Thread(this).start();
+        startConsumer();
     }
 
     @Override
@@ -41,6 +41,8 @@ public class CustomerMessageConsumer implements Runnable, MessageConsumer {
                 }
             }
         }
+    public void startConsumer() {
+        new Thread(this).start();
     }
 
     @Override
